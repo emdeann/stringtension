@@ -75,4 +75,4 @@ def find_frequency(video_path, n, fps):
     
     elapsed = total_frames/fps
     period = 2*(elapsed/frames_passed)
-    print(1/period)
+    return 1/period # return freq as reciprocal of period
