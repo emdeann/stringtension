@@ -1,4 +1,7 @@
 Practice/
 standing_wave_images/
 __pycache__/
+build/
+dist/
+*.spec
 generate_images.py
