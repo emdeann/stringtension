@@ -42,14 +42,14 @@ def find_frequency(video_path, n, fps):
             _, thresh = cv.threshold(gray, 75, 255, cv.THRESH_BINARY)
             _, thresh_low = cv.threshold(gray, 0.001, 255, cv.THRESH_BINARY)
             # Black bars will stay dark even with small threshold
-            while thresh_low[h-10, bars_width] == 0:
+            while thresh_low[h-10, bars_width] == 0: # search left side for end of black bar
                 bars_width += 1
             w -= 2*bars_width
                 
             # find height of string in video
             thresh = thresh[0:h, bars_width:frame.shape[1]-bars_width] 
-            node_x = w//n if n > 1 else 15
-            string_y = h//4
+            node_x = w//n if n > 1 else 15 # offset node if n=1 (avoid video boundary)
+            string_y = h//4 # starting y-value for searching is h/4
             string_found = False
             while not string_found:
                 string_y += 1
@@ -76,8 +76,3 @@ def find_frequency(video_path, n, fps):
     elapsed = total_frames/fps
     period = 2*(elapsed/frames_passed)
     print(1/period)
-    
-
-
-video_path = 'Practice/Videos/f1.mp4'
-find_frequency(video_path, 1, 304)
